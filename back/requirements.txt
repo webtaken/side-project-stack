@@ -6,3 +6,6 @@ django_environ==0.11.2
 djangorestframework_simplejwt==5.3.1
 # Add this always
 django-cors-headers
+psycopg2
+uvicorn
+gunicorn
