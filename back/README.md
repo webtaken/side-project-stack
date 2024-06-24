@@ -11,6 +11,8 @@ Steps to deploy:
 
 # Libraries used
 
+Use `pip install <library>`, and then `pip freeze > requirements.txt`.
+
 ```
 Django
 dj_rest_auth
