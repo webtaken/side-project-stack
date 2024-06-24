@@ -8,3 +8,20 @@ Steps to deploy:
 - If you wanna recreate the `requirements.txt` install pipreqs: `pip install pipreqs` -> `pipreqs . --force --ignore .venv`.
 - Create a `.env` file using the `.env.example` file as template.
 - Push to main branch linked to Railway app.
+
+# Libraries used
+
+```
+Django
+dj_rest_auth
+dj_database_url
+django_allauth
+django_environ
+djangorestframework
+djangorestframework_simplejwt
+django-cors-headers
+psycopg2
+uvicorn
+gunicorn
+whitenoise
+```
