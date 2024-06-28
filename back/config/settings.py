@@ -34,6 +34,7 @@ env = Env(
     ALLOWED_HOSTS=(list, "ALLOWED_HOSTS"),
     CORS_ALLOWED_ORIGINS=(list, "CORS_ALLOWED_ORIGINS"),
     CSRF_TRUSTED_ORIGINS=(list, "CSRF_TRUSTED_ORIGINS"),
+    SERVER_BASE_URL=(str, "SERVER_BASE_URL"),
     # LEMONSQUEEZY_API_BASE=(str, "LEMONSQUEEZY_API_BASE"),
     # LEMONSQUEEZY_API_KEY=(str, "LEMONSQUEEZY_API_KEY"),
     # LEMONSQUEEZY_STORE_ID=(int, "LEMONSQUEEZY_STORE_ID"),
@@ -78,6 +79,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "corsheaders",
+    "drf_spectacular",
     "rest_framework",
     "rest_framework.authtoken",
     "rest_framework_simplejwt",
@@ -201,9 +203,20 @@ SIMPLE_JWT = {
 
 # Django rest framework
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ]
+    ],
+}
+
+# drf-spectacular
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Starter template",
+    "DESCRIPTION": "the API of the starter template",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    # OTHER SETTINGS
+    "SERVERS": [{"url": env("SERVER_BASE_URL"), "description": "Starter template API"}],
 }
 
 # django-all-auth

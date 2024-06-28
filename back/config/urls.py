@@ -19,13 +19,18 @@ from django.contrib import admin
 from django.http import JsonResponse
 from django.urls import include, path
 from django.views.decorators.http import require_GET
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 
 
 @require_GET
 def server_status(_request):
     return JsonResponse(
         {
-            "project": "Marcaciones NOC Deployment",
+            "project": "Starter template Deployment",
             "message": "server ON",
             "comments": "Only GOD knows what is going on here",
         }
@@ -36,4 +41,17 @@ urlpatterns = [
     path("", server_status),
     path("admin/", admin.site.urls),
     path("api/auth/", include("authentication.urls")),
+    # YOUR PATTERNS
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    # Optional UI:
+    path(
+        "api/schema/swagger-ui/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+    path(
+        "api/schema/redoc/",
+        SpectacularRedocView.as_view(url_name="schema"),
+        name="redoc",
+    ),
 ]
