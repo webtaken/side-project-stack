@@ -1,0 +1,80 @@
+---
+title: Installation
+description: Installation guide for our application.
+---
+
+To get started with our application, follow these simple steps
+
+## Prerequisites
+
+Before installing our application, make sure you have the following:
+
+- Node.js installed on your machine
+- Python v3.11+ environment [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html "virtualenv")
+
+<Note title="Important">
+  We require Node 18.17 or greater. Type node -v in your terminal to check version.
+</Note>
+
+## Installation Steps
+
+<Stepper>
+<StepperItem title="Clone the Repository">
+Start by cloning the base repository:
+
+```bash
+git clone https://github.com/webtaken/side-project-stack.git [YOUR_APP_NAME]
+cd [YOUR_APP_NAME]
+git remote remove origin
+```
+
+</StepperItem>
+<StepperItem title="Navigate to the Project Directory">
+Install `tailwindcss` and its peer dependencies, then add your `tailwind.config.js` and postcss.config.js files:
+
+```tsx
+import "@/styles/globals.css";
+import { Inter as FontSans } from "next/font/google";
+
+import { cn } from "@/lib/utils";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        ...
+      </body>
+    </html>
+  );
+}
+```
+
+</StepperItem>
+
+<StepperItem title="Install Dependencies">
+ Install the necessary dependencies using npm or yarn.
+
+```bash
+npm install
+# or
+yarn install
+```
+
+</StepperItem>
+
+</Stepper>
+
+## Additional Information
+
+For more detailed instructions and troubleshooting tips, refer to our [documentation](#).
