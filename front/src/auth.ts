@@ -73,7 +73,7 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, account, profile, email, credentials }) {
       if (account) {
         if (!SIGN_IN_PROVIDERS.includes(account.provider)) return false;
-        if (account.provider == "google") {
+        if (account.provider === "google") {
           try {
             setBasePathToAPI();
             const response = await authGoogleCreate({
@@ -82,7 +82,6 @@ export const authOptions: NextAuthOptions = {
                 id_token: account["id_token"],
               },
             });
-            console.log(response);
             account["meta"] = response;
             return true;
           } catch (error) {
@@ -106,7 +105,6 @@ export const authOptions: NextAuthOptions = {
       if (user && account) {
         let backendResponse: any =
           account.provider === "credentials" ? user : account.meta;
-        console.log("Backend response", backendResponse);
         token["user"] = backendResponse.user;
         token["access_token"] = backendResponse.access;
         token["refresh_token"] = backendResponse.refresh;
